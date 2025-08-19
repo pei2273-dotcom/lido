@@ -12,10 +12,11 @@
         }
 
         body {
-            font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
             padding: 20px;
+            font-size: 16px;
         }
 
         .container {
@@ -63,13 +64,14 @@
         }
 
         .search-box input {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border: 2px solid #ddd;
             border-radius: 25px;
-            font-size: 14px;
+            font-size: 16px;
             outline: none;
             transition: border-color 0.3s ease;
-            width: 250px;
+            width: 280px;
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
         }
 
         .search-box input:focus {
@@ -83,15 +85,16 @@
         }
 
         .filter-btn {
-            padding: 8px 16px;
+            padding: 10px 18px;
             border: 2px solid #2a5298;
             background: white;
             color: #2a5298;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
         }
 
         .filter-btn:hover,
@@ -108,7 +111,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         thead {
@@ -119,22 +122,25 @@
         }
 
         th {
-            padding: 15px 12px;
-            text-align: left;
+            padding: 18px 15px;
+            text-align: center;
+            vertical-align: middle;
             font-weight: 700;
             color: #1e3c72;
             border-bottom: 2px solid #2a5298;
             white-space: nowrap;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 13px;
             letter-spacing: 0.5px;
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
         }
 
         td {
             padding: 15px 12px;
             border-bottom: 1px solid #f0f0f0;
             vertical-align: middle;
-            white-space: nowrap;
+            text-align: center;
+            line-height: 1.5;
         }
 
         tbody tr {
@@ -153,35 +159,56 @@
         .flight-number {
             font-weight: bold;
             color: #1e3c72;
-            font-size: 16px;
+            font-size: 17px;
         }
 
         .aircraft-number {
-            font-family: 'Courier New', monospace;
+            font-family: 'Arial', monospace;
             background: #f0f8ff;
-            padding: 4px 8px;
+            padding: 6px 10px;
             border-radius: 4px;
             color: #2a5298;
             font-weight: 600;
+            font-size: 14px;
+        }
+
+        .pic-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 100px;
+        }
+
+        .pic-name {
+            font-weight: 600;
+            color: #1e3c72;
+            background: #e6f3ff;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
         }
 
         .acars-code {
-            font-family: 'Courier New', monospace;
-            background: #fff3cd;
+            font-family: 'Arial', monospace;
+            background: #e8e9ea;
             padding: 4px 8px;
             border-radius: 4px;
-            color: #856404;
+            color: #495057;
             font-weight: 600;
+            font-size: 12px;
+            text-align: center;
         }
 
         .status {
-            padding: 6px 12px;
+            padding: 10px 18px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             text-align: center;
+            font-family: 'Arial', sans-serif;
         }
 
         .status.accepted {
@@ -190,24 +217,33 @@
         }
 
         .status.pending {
-            background: #fff3cd;
-            color: #856404;
+            background: #e8e9ea;
+            color: #495057;
         }
 
         .status.error {
             background: #f8d7da;
             color: #721c24;
+            font-size: 16px;
+            font-weight: 900;
+            padding: 12px 20px;
+        }
+
+        .timestamp {
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: nowrap;
         }
 
         .journey-log-btn {
-            font-family: 'Courier New', monospace;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
             border: none;
-            padding: 6px 14px;
+            padding: 8px 15px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -220,29 +256,18 @@
             background: linear-gradient(135deg, #38b755 0%, #30d9a7 100%);
         }
 
-        .journey-log-btn:active {
-            transform: translateY(0);
-        }
-
-        .pic-name {
-            font-weight: 600;
-            color: #1e3c72;
-            background: #e6f3ff;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
         .tow-btn {
             background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 15px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
         }
 
         .tow-btn:hover {
@@ -251,8 +276,44 @@
             background: linear-gradient(135deg, #3a62a8 0%, #2e4c82 100%);
         }
 
-        .tow-btn:active {
-            transform: translateY(0);
+        .ofp-btn {
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
+        }
+
+        .ofp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+            background: linear-gradient(135deg, #27b2c8 0%, #238ba6 100%);
+        }
+
+        .details-btn {
+            background: linear-gradient(135deg, #6f42c1 0%, #5a3a9b 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
+        }
+
+        .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+            background: linear-gradient(135deg, #7f52d1 0%, #6a4aab 100%);
         }
 
         /* 圖片彈出視窗樣式 */
@@ -345,8 +406,8 @@
             border-radius: 8px;
             max-height: 70vh;
             overflow-y: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
+            font-family: 'DFKai-SB', '標楷體', 'Arial', monospace;
+            font-size: 15px;
             line-height: 1.6;
             color: #333;
             white-space: pre-wrap;
@@ -358,7 +419,7 @@
             padding: 20px;
             background: #f8f9fa;
             color: #666;
-            font-size: 12px;
+            font-size: 14px;
             border-top: 1px solid #e0e0e0;
         }
 
@@ -366,12 +427,13 @@
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
+            font-family: 'DFKai-SB', '標楷體', 'Arial', sans-serif;
         }
 
         .refresh-btn:hover {
@@ -395,8 +457,8 @@
             }
             
             th, td {
-                padding: 10px 8px;
-                font-size: 12px;
+                padding: 8px 6px;
+                font-size: 11px;
             }
             
             .modal-content {
@@ -429,169 +491,230 @@
                     <tr>
                         <th>航班號</th>
                         <th>機號</th>
-                        <th>PIC</th>
-                        <th>ACARS Accept</th>
-                        <th>ACCEPT 時間</th>
-                        <th>mBriefing Accept</th>
-                        <th>mBriefing Submit</th>
                         <th>起飛地</th>
                         <th>目的地</th>
+                        <th>mBriefing Accept</th>
+                        <th>PIC & ACARS Accept</th>
+                        <th>ACCEPT 時間</th>
+                        <th>mBriefing Submit</th>
                         <th>ETD</th>
                         <th>ATD</th>
                         <th>Journey Log</th>
                         <th>TOW</th>
+                        <th>Pre Flight OFP</th>
+                        <th>其他詳細資料</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-status="accepted">
                         <td class="flight-number">CI015</td>
                         <td class="aircraft-number">B18001</td>
-                        <td class="pic-name">王一天</td>
-                        <td class="acars-code">645107</td>
-                        <td class="timestamp">2025/8/15 17:19</td>
-                        <td class="timestamp">2025/8/15 17:24</td>
-                        <td class="timestamp">2025/8/15 23:25</td>
                         <td>TPE</td>
                         <td>NRT</td>
+                        <td class="timestamp">2025/8/15 16:49<br>王一天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳一天</div>
+                                <div class="acars-code">645107</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:19</td>
+                        <td class="timestamp">2025/8/15 23:25</td>
                         <td>17:30</td>
                         <td>17:25</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI015', 'Log')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI015')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI015')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI015')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI223</td>
                         <td class="aircraft-number">B18905</td>
-                        <td class="pic-name">王二天</td>
-                        <td class="acars-code">645109</td>
-                        <td class="timestamp">2025/8/15 17:25</td>
-                        <td class="timestamp">2025/8/15 17:30</td>
-                        <td class="timestamp">2025/8/16 00:42</td>
                         <td>TPE</td>
                         <td>BKK</td>
+                        <td class="timestamp">2025/8/15 16:55<br>王二天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳二天</div>
+                                <div class="acars-code">645109</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:25</td>
+                        <td class="timestamp">2025/8/16 00:42</td>
                         <td>18:15</td>
                         <td>18:42</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI223', 'JL001235')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI223')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI223')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI223')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI717</td>
                         <td class="aircraft-number">B18203</td>
-                        <td class="pic-name">王三天</td>
-                        <td class="acars-code">645111</td>
-                        <td class="timestamp">2025/8/15 17:30</td>
-                        <td class="timestamp">2025/8/15 17:35</td>
-                        <td class="timestamp">2025/8/16 01:15</td>
                         <td>TPE</td>
                         <td>SIN</td>
+                        <td class="timestamp">2025/8/15 17:00<br>王三天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳三天</div>
+                                <div class="acars-code">645111</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:30</td>
+                        <td class="timestamp">2025/8/16 01:15</td>
                         <td>19:00</td>
                         <td>19:15</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI717', 'JL001236')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI717')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI717')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI717')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI069</td>
                         <td class="aircraft-number">B18111</td>
-                        <td class="pic-name">王四天</td>
-                        <td class="acars-code">645113</td>
-                        <td class="timestamp">2025/8/15 17:35</td>
-                        <td class="status error">ERROR</td>
-                        <td class="status error">ERROR</td>
                         <td>TPE</td>
                         <td>HKG</td>
+                        <td class="status error">ERROR</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳四天</div>
+                                <div class="acars-code">645113</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:35</td>
+                        <td class="status error">ERROR</td>
                         <td>20:00</td>
                         <td>20:28</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI069', 'JL001237')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI069')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI069')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI069')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI835</td>
                         <td class="aircraft-number">B18607</td>
-                        <td class="pic-name">王五天</td>
-                        <td class="acars-code">645115</td>
-                        <td class="timestamp">2025/8/15 17:40</td>
-                        <td class="timestamp">2025/8/15 17:45</td>
-                        <td class="timestamp">2025/8/16 02:55</td>
                         <td>TPE</td>
                         <td>MNL</td>
+                        <td class="timestamp">2025/8/15 17:10<br>王五天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳五天</div>
+                                <div class="acars-code">645115</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:40</td>
+                        <td class="timestamp">2025/8/16 02:55</td>
                         <td>20:30</td>
                         <td>20:55</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI835', 'JL001238')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI835')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI835')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI835')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI009</td>
                         <td class="aircraft-number">B18801</td>
-                        <td class="pic-name">王六天</td>
-                        <td class="acars-code">645117</td>
-                        <td class="timestamp">2025/8/15 17:45</td>
-                        <td class="timestamp">2025/8/15 17:50</td>
-                        <td class="timestamp">2025/8/16 03:12</td>
                         <td>TPE</td>
                         <td>LAX</td>
+                        <td class="timestamp">2025/8/15 17:15<br>王六天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳六天</div>
+                                <div class="acars-code">645117</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:45</td>
+                        <td class="timestamp">2025/8/16 03:12</td>
                         <td>21:00</td>
                         <td>21:12</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI009', 'JL001239')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI009')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI009')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI009')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI127</td>
                         <td class="aircraft-number">B18302</td>
-                        <td class="pic-name">王七天</td>
-                        <td class="acars-code">645118</td>
-                        <td class="timestamp">2025/8/15 17:50</td>
-                        <td class="timestamp">2025/8/15 17:55</td>
-                        <td class="timestamp">2025/8/16 03:58</td>
                         <td>TPE</td>
                         <td>SFO</td>
+                        <td class="timestamp">2025/8/15 17:20<br>王七天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳七天</div>
+                                <div class="acars-code">645118</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:50</td>
+                        <td class="timestamp">2025/8/16 03:58</td>
                         <td>21:45</td>
                         <td>21:58</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI127', 'JL001240')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI127')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI127')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI127')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI151</td>
                         <td class="aircraft-number">B18505</td>
-                        <td class="pic-name">王八天</td>
-                        <td class="acars-code">645119</td>
-                        <td class="timestamp">2025/8/15 17:55</td>
-                        <td class="timestamp">2025/8/15 18:00</td>
-                        <td class="timestamp">2025/8/16 04:35</td>
                         <td>TPE</td>
                         <td>ICN</td>
+                        <td class="timestamp">2025/8/15 17:25<br>王八天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳八天</div>
+                                <div class="acars-code">645119</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 17:55</td>
+                        <td class="timestamp">2025/8/16 04:35</td>
                         <td>22:25</td>
                         <td>22:35</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI151', 'JL001241')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI151')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI151')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI151')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI197</td>
                         <td class="aircraft-number">B18106</td>
-                        <td class="pic-name">王九天</td>
-                        <td class="acars-code">645120</td>
-                        <td class="timestamp">2025/8/15 18:00</td>
-                        <td class="timestamp">2025/8/15 18:05</td>
-                        <td class="timestamp">2025/8/16 05:18</td>
                         <td>TPE</td>
                         <td>KIX</td>
+                        <td class="timestamp">2025/8/15 17:30<br>王九天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳九天</div>
+                                <div class="acars-code">645120</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 18:00</td>
+                        <td class="timestamp">2025/8/16 05:18</td>
                         <td>23:10</td>
                         <td>23:18</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI197', 'JL001242')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI197')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI197')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI197')">詳細資料</button></td>
                     </tr>
                     <tr data-status="accepted">
                         <td class="flight-number">CI771</td>
                         <td class="aircraft-number">B18708</td>
-                        <td class="pic-name">王十天</td>
-                        <td class="acars-code">645121</td>
-                        <td class="timestamp">2025/8/15 18:05</td>
-                        <td class="timestamp">2025/8/15 18:10</td>
-                        <td class="timestamp">2025/8/16 05:52</td>
                         <td>TPE</td>
                         <td>SGN</td>
+                        <td class="timestamp">2025/8/15 17:35<br>王十天</td>
+                        <td>
+                            <div class="pic-info">
+                                <div class="pic-name">陳十天</div>
+                                <div class="acars-code">645121</div>
+                            </div>
+                        </td>
+                        <td class="timestamp">2025/8/15 18:05</td>
+                        <td class="timestamp">2025/8/16 05:52</td>
                         <td>23:45</td>
                         <td>23:52</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI771', 'JL001243')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI771')">查看 TOW</button></td>
+                        <td><button class="ofp-btn" onclick="showOFP('CI771')">查看 OFP</button></td>
+                        <td><button class="details-btn" onclick="showDetails('CI771')">詳細資料</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -605,148 +728,4 @@
         </div>
     </div>
 
-    <!-- 圖片彈出視窗 -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title" id="modalTitle">TOW 圖片</span>
-                <span class="close" onclick="closeModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <img id="modalImage" src="" alt="TOW 圖片" style="display: none;">
-                <pre id="modalText" style="display: none;"></pre>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.getFullYear() + '/' + 
-                             String(now.getMonth() + 1).padStart(2, '0') + '/' + 
-                             String(now.getDate()).padStart(2, '0') + ' ' +
-                             String(now.getHours()).padStart(2, '0') + ':' + 
-                             String(now.getMinutes()).padStart(2, '0') + ':' + 
-                             String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('currentTime').textContent = timeString;
-        }
-
-        function filterTable() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const table = document.getElementById('flightTable');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                let found = false;
-                
-                for (let j = 0; j < 2; j++) { // 只搜尋航班號和機號
-                    if (cells[j] && cells[j].textContent.toLowerCase().indexOf(filter) > -1) {
-                        found = true;
-                        break;
-                    }
-                }
-                
-                rows[i].style.display = found ? '' : 'none';
-            }
-        }
-
-        function refreshData() {
-            // 模擬數據刷新
-            const button = event.target;
-            button.innerHTML = '🔄 更新中...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                updateTime();
-                button.innerHTML = '🔄 重新整理';
-                button.disabled = false;
-                
-                // 可以在這裡添加實際的數據更新邏輯
-                console.log('數據已更新');
-            }, 1500);
-        }
-
-        // TOW 圖片顯示功能
-        function showTOWImage(flightNumber) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalText = document.getElementById('modalText');
-            const modalTitle = document.getElementById('modalTitle');
-            
-            // 設定標題
-            modalTitle.textContent = `航班 ${flightNumber} - TOW 圖片`;
-            
-            // 隱藏文字，顯示圖片
-            modalText.style.display = 'none';
-            modalImage.style.display = 'block';
-            
-            // 設定圖片路徑（假設圖片命名格式為 TOW_航班號.jpg）
-            modalImage.src = `TOW_${flightNumber}.jpg`;
-            
-            // 如果圖片載入失敗，顯示預設圖片或錯誤訊息
-            modalImage.onerror = function() {
-                this.src = 'TOW_default.jpg'; // 預設圖片
-            };
-            
-            // 顯示彈出視窗
-            modal.style.display = 'block';
-        }
-
-        // Journey Log 資料（內嵌在程式中）
-        const journeyLogData = {
-            'default': `B-18666    OPERATION    LOG
-----------------------------------------
-    CI0601 RCTP/VHHH SCHED DATE:1804
-    PIC/DUTY 638001/CA         (DANA)
-    ID2/DUTY 380815/FO
-    ID3/DUTY 380819/FUO
-    ID4/DUTY ******/[ ]
-    ID5/DUTY ******/[ ]
-    ID6/DUTY ******/[ ]
-    L/D PF/PN:2/1 DAY    MANUAL LAND
-    NIGHT TIME: **:**
-    LOG/IRS:**/**
-         TIME       FOB
-    OUT  2322     17.000
-    OFF  2332     16.800
-    ON   0058      8.880
-    IN   0111      8.440
-    INST 0126
-    BLK  0149
-    FUEL ADDED: 00904 GALLON
-    FUEL TOTAL:016940 LB
-    ACCEPT BY PIC: 638001
-----------------------------------------
-    F-OP051AA`
-        };
-
-        // Journey Log 文字檔顯示功能
-        function showJourneyLog(flightNumber, logNumber) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalText = document.getElementById('modalText');
-            const modalTitle = document.getElementById('modalTitle');
-            
-            // 設定標題
-            modalTitle.textContent = `航班 ${flightNumber} - Journey Log (${logNumber})`;
-            
-            // 隱藏圖片，顯示文字
-            modalImage.style.display = 'none';
-            modalText.style.display = 'block';
-            
-            // 所有航班都使用相同的 Journey Log 資料
-            modalText.textContent = journeyLogData['default'];
-            
-            // 顯示彈出視窗
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-
-        // 點擊視窗外部關閉彈出視窗
-        window
+    <!-- 圖片彈出視
