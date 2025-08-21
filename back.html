@@ -551,7 +551,7 @@
                         <td class="timestamp">2025/8/16 00:42</td>
                         <td>18:15</td>
                         <td>18:42</td>
-                        <td><button class="journey-log-btn" onclick="showJourneyLog('CI015', 'Log')">Log</button></td>
+                        <td><button class="journey-log-btn" onclick="showJourneyLog('CI223', 'Log')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI223')">查看 TOW</button></td>
                         <td><button class="ofp-btn" onclick="showOFP('CI223')">查看 OFP</button></td>
                         <td><button class="details-btn" onclick="showDetails('CI223')">詳細資料</button></td>
@@ -931,31 +931,43 @@ document.addEventListener('keydown', function(event) {
         };
 
         // Journey Log 文字檔顯示功能
-        function showJourneyLog(flightNumber, logNumber) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalText = document.getElementById('modalText');
-            const modalTitle = document.getElementById('modalTitle');
-            
-            // 設定標題
-            modalTitle.textContent = `航班 ${flightNumber} - Journey Log (${logNumber})`;
-            
-            // 隱藏圖片，顯示文字
-            modalImage.style.display = 'none';
-            modalText.style.display = 'block';
-            
-            // 所有航班都使用相同的 Journey Log 資料
-            modalText.textContent = journeyLogData['default'];
-            
-            // 顯示彈出視窗
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-
+       function showJourneyLog(flightNumber, logNumber) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalText = document.getElementById('modalText');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    // 設定標題
+    modalTitle.textContent = `航班 ${flightNumber} - Journey Log (${logNumber})`;
+    
+    // 先嘗試載入圖片
+    const tempImage = new Image();
+    
+    // 圖片載入成功時的處理
+    tempImage.onload = function() {
+        // 隱藏文字，顯示圖片
+        modalText.style.display = 'none';
+        modalImage.style.display = 'block';
+        modalImage.src = tempImage.src;
+        
+        // 顯示彈出視窗
+        modal.style.display = 'block';
+    };
+    
+    // 圖片載入失敗時的處理
+    tempImage.onerror = function() {
+        // 隱藏圖片，顯示預設文字
+        modalImage.style.display = 'none';
+        modalText.style.display = 'block';
+        modalText.textContent = journeyLogData['default'];
+        
+        // 顯示彈出視窗
+        modal.style.display = 'block';
+    };
+    
+    // 設定圖片路徑並嘗試載入
+    tempImage.src = `${flightNumber}_log.png`;
+}
         // 點擊視窗外部關閉彈出視窗
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
