@@ -399,6 +399,14 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
+        .modal-content img {
+            max-width: 150%;
+            max-height: 70vh;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
         .modal-body pre {
             text-align: left;
             background: #f8f9fa;
@@ -523,7 +531,7 @@
                         <td>17:30</td>
                         <td>17:25</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI015', 'Log')">Log</button></td>
-                        <td><button class="tow-btn" onclick="showTOWImage('CI015')">查看 TOW</button></td>
+                        <td><button class="tow-btn" onclick="openImageModal('tow.png')">查看 TOW</button></td>
                         <td><button class="ofp-btn" onclick="showOFP('CI015')">查看 OFP</button></td>
                         <td><button class="details-btn" onclick="showDetails('CI015')">詳細資料</button></td>
                     </tr>
@@ -727,5 +735,54 @@
             </button>
         </div>
     </div>
+        <!-- 圖片模態框 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="" alt="參考圖片">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            
+            collapsibles.forEach(function(collapsible) {
+                const header = collapsible.querySelector('.collapsible-header');
+                
+                header.addEventListener('click', function() {
+                    collapsible.classList.toggle('active');
+                });
+            });
+        });
+
+        // 圖片模態框功能
+        function openImageModal(imageName) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modalImg.src = imageName;
+            modalImg.alt = '參考圖片: ' + imageName;
+            modal.style.display = 'block';
+            
+            // 點擊模態框背景關閉
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    closeImageModal();
+                }
+            }
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // ESC 鍵關閉模態框
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
 
     <!-- 圖片彈出視
