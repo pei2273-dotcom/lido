@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA管理系統</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            padding: 12px 30px;
+            color: white;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tab.active {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+
+        .qa-list {
+            margin-top: 30px;
+        }
+
+        .qa-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .qa-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .qa-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .category-操作 { background: #3498db; }
+        .category-法規 { background: #e74c3c; }
+        .category-系統 { background: #2ecc71; }
+        .category-流程 { background: #f39c12; }
+        .category-其他 { background: #9b59b6; }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .status-待討論 { background: #f39c12; }
+        .status-已解決 { background: #27ae60; }
+
+        .qa-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+
+        .qa-content {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .qa-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .edit-form {
+            display: none;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            max-width: 400px;
+        }
+
+        .filter-buttons {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #e1e5e9;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-tab {
+                width: 200px;
+                margin: 5px 0;
+            }
+            
+            .qa-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 QA管理系統</h1>
+            <p>問題與答案的集中管理平台</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('add')">新增QA</button>
+            <button class="nav-tab" onclick="showTab('overview')">總覽管理</button>
+        </div>
+
+        <!-- 新增QA頁面 -->
+        <div id="add-tab" class="tab-content active">
+            <h2>📝 新增問題與答案</h2>
+            <form id="qa-form">
+                <div class="form-group">
+                    <label for="category">問題分類 *</label>
+                    <select id="category" required>
+                        <option value="">請選擇分類</option>
+                        <option value="操作">操作</option>
+                        <option value="法規">法規</option>
+                        <option value="系統">系統</option>
+                        <option value="流程">流程</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">問題題目 *</label>
+                    <input type="text" id="title" placeholder="請輸入問題題目..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="answer">答案 *</label>
+                    <textarea id="answer" placeholder="請輸入詳細答案..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">狀態</label>
+                    <select id="status">
+                        <option value="待討論">待討論</option>
+                        <option value="已解決">已解決</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">💾 儲存QA</button>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">🔄 清除表單</button>
+            </form>
+        </div>
+
+        <!-- 總覽管理頁面 -->
+        <div id="overview-tab" class="tab-content">
+            <h2>📊 QA總覽與管理</h2>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-count">0</div>
+                    <div class="stat-label">總問題數</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pending-count">0</div>
+                    <div class="stat-label">待討論</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="resolved-count">0</div>
+                    <div class="stat-label">已解決</div>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="🔍 搜尋問題或答案..." oninput="filterQA()">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">全部</button>
+                <button class="filter-btn" data-filter="操作" onclick="setFilter('操作')">操作</button>
+                <button class="filter-btn" data-filter="法規" onclick="setFilter('法規')">法規</button>
+                <button class="filter-btn" data-filter="系統" onclick="setFilter('系統')">系統</button>
+                <button class="filter-btn" data-filter="流程" onclick="setFilter('流程')">流程</button>
+                <button class="filter-btn" data-filter="其他" onclick="setFilter('其他')">其他</button>
+                <button class="filter-btn" data-filter="待討論" onclick="setFilter('待討論')">待討論</button>
+                <button class="filter-btn" data-filter="已解決" onclick="setFilter('已解決')">已解決</button>
+            </div>
+
+            <div id="qa-list" class="qa-list">
+                <p style="text-align: center; color: #666; font-style: italic;">尚無QA資料</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let qaData = [];
+        let currentFilter = 'all';
+
+        // 頁面切換
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+
+            if (tabName === 'overview') {
+                displayQA();
+                updateStats();
+            }
+        }
+
+        // 表單提交
+        document.getElementById('qa-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const category = document.getElementById('category').value;
+            const title = document.getElementById('title').value;
+            const answer = document.getElementById('answer').value;
+            const status = document.getElementById('status').value;
+
+            if (!category || !title || !answer) {
+                alert('請填寫所有必填欄位！');
+                return;
+            }
+
+            const qa = {
+                id: Date.now(),
+                category: category,
+                title: title,
+                answer: answer,
+                status: status,
+                createdAt: new Date().toLocaleString('zh-TW')
+            };
+
+            qaData.push(qa);
+            alert('QA新增成功！');
+            clearForm();
+        });
+
+        // 清除表單
+        function clearForm() {
+            document.getElementById('qa-form').reset();
+        }
+
+        // 顯示QA列表
+        function displayQA() {
+            const qaList = document.getElementById('qa-list');
+            
+            if (qaData.length === 0) {
+                qaList.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">尚無QA資料</p>';
+                return;
+            }
+
+            let filteredData = qaData;
+            
+            // 套用分類/狀態篩選
+            if (currentFilter !== 'all') {
+                filteredData = qaData.filter(qa => 
+                    qa.category === currentFilter || qa.status === currentFilter
+                );
+            }
+
+            // 套用搜尋篩選
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            if (searchTerm) {
+                filteredData = filteredData.filter(qa =>
+                    qa.title.toLowerCase().includes(searchTerm) ||
+                    qa.answer.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            qaList.innerHTML = filteredData.map(qa => `
+                <div class="qa-item" data-id="${qa.id}">
+                    <div class="qa-header">
+                        <div>
+                            <span class="category-badge category-${qa.category}">${qa.category}</span>
+                            <span class="status-badge status-${qa.status}">${qa.status}</span>
+                        </div>
+                        <small style="color: #666;">建立時間: ${qa.createdAt}</small>
+                    </div>
+                    <div class="qa-title">${qa.title}</div>
+                    <div class="qa-content">${qa.answer.replace(/\n/g, '<br>')}</div>
+                    <div class="qa-actions">
+                        <button class="btn" onclick="editQA(${qa.id})">✏️ 編輯</button>
+                        <button class="btn ${qa.status === '待討論' ? '' : 'btn-secondary'}" onclick="toggleStatus(${qa.id})">
+                            ${qa.status === '待討論' ? '✅ 標記已解決' : '🔄 標記待討論'}
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteQA(${qa.id})">🗑️ 刪除</button>
+                    </div>
+                    <div id="edit-form-${qa.id}" class="edit-form">
+                        <div class="form-group">
+                            <label>問題分類</label>
+                            <select id="edit-category-${qa.id}">
+                                <option value="操作" ${qa.category === '操作' ? 'selected' : ''}>操作</option>
+                                <option value="法規" ${qa.category === '法規' ? 'selected' : ''}>法規</option>
+                                <option value="系統" ${qa.category === '系統' ? 'selected' : ''}>系統</option>
+                                <option value="流程" ${qa.category === '流程' ? 'selected' : ''}>流程</option>
+                                <option value="其他" ${qa.category === '其他' ? 'selected' : ''}>其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>問題題目</label>
+                            <input type="text" id="edit-title-${qa.id}" value="${qa.title}">
+                        </div>
+                        <div class="form-group">
+                            <label>答案</label>
+                            <textarea id="edit-answer-${qa.id}">${qa.answer}</textarea>
+                        </div>
+                        <button class="btn" onclick="saveEdit(${qa.id})">💾 儲存修改</button>
+                        <button class="btn btn-secondary" onclick="cancelEdit(${qa.id})">❌ 取消</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 編輯QA
+        function editQA(id) {
+            const editForm = document.getElementById(`edit-form-${id}`);
+            editForm.style.display = editForm.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // 儲存編輯
+        function saveEdit(id) {
+            const category = document.getElementById(`edit-category-${id}`).value;
+            const title = document.getElementById(`edit-title-${id}`).value;
+            const answer = document.getElementById(`edit-answer-${id}`).value;
+
+            if (!title || !answer) {
+                alert('請填寫所有欄位！');
+                return;
+            }
+
+            const qaIndex = qaData.findIndex(qa => qa.id === id);
+            if (qaIndex !== -1) {
+                qaData[qaIndex].category = category;
+                qaData[qaIndex].title = title;
+                qaData[qaIndex].answer = answer;
+            }
+
+            displayQA();
+            updateStats();
+            alert('修改成功！');
+        }
+
+        // 取消編輯
+        function cancelEdit(id) {
+            document.getElementById(`edit-form-${id}`).style.display = 'none';
+        }
+
+        // 切換狀態
+        function toggleStatus(id) {
+            const qaIndex = qaData.findIndex(qa => qa.id === id);
+            if (qaIndex !== -1) {
+                qaData[qaIndex].status = qaData[qaIndex].status === '待討論' ? '已解決' : '待討論';
+                displayQA();
+                updateStats();
+            }
+        }
+
+        // 刪除QA
+        function deleteQA(id) {
+            if (confirm('確定要刪除這個QA嗎？')) {
+                qaData = qaData.filter(qa => qa.id !== id);
+                displayQA();
+                updateStats();
+                alert('刪除成功！');
+            }
+        }
+
+        // 設定篩選
+        function setFilter(filter) {
+            currentFilter = filter;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+            displayQA();
+        }
+
+        // 搜尋篩選
+        function filterQA() {
+            displayQA();
+        }
+
+        // 更新統計
+        function updateStats() {
+            const totalCount = qaData.length;
+            const pendingCount = qaData.filter(qa => qa.status === '待討論').length;
+            const resolvedCount = qaData.filter(qa => qa.status === '已解決').length;
+
+            document.getElementById('total-count').textContent = totalCount;
+            document.getElementById('pending-count').textContent = pendingCount;
+            document.getElementById('resolved-count').textContent = resolvedCount;
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+        });
+    </script>
+</body>
+</html>

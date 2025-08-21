@@ -531,7 +531,7 @@
                         <td>17:30</td>
                         <td>17:25</td>
                         <td><button class="journey-log-btn" onclick="showJourneyLog('CI015', 'Log')">Log</button></td>
-                        <td><button class="tow-btn" onclick="openImageModal('tow.png')">查看 TOW</button></td>
+                        <td><button class="tow-btn" onclick="showTOWImage('CI015')">查看 TOW</button></td>
                         <td><button class="ofp-btn" onclick="showOFP('CI015')">查看 OFP</button></td>
                         <td><button class="details-btn" onclick="showDetails('CI015')">詳細資料</button></td>
                     </tr>
@@ -551,7 +551,7 @@
                         <td class="timestamp">2025/8/16 00:42</td>
                         <td>18:15</td>
                         <td>18:42</td>
-                        <td><button class="journey-log-btn" onclick="showJourneyLog('CI223', 'JL001235')">Log</button></td>
+                        <td><button class="journey-log-btn" onclick="showJourneyLog('CI015', 'Log')">Log</button></td>
                         <td><button class="tow-btn" onclick="showTOWImage('CI223')">查看 TOW</button></td>
                         <td><button class="ofp-btn" onclick="showOFP('CI223')">查看 OFP</button></td>
                         <td><button class="details-btn" onclick="showDetails('CI223')">詳細資料</button></td>
@@ -735,53 +735,179 @@
             </button>
         </div>
     </div>
-        <!-- 圖片模態框 -->
+    <!-- 圖片彈出視窗 -->
     <div id="imageModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeImageModal()">&times;</span>
-            <img id="modalImage" src="" alt="參考圖片">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">TOW 圖片</span>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="TOW 圖片" style="display: none;">
+                <pre id="modalText" style="display: none;"></pre>
+            </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const collapsibles = document.querySelectorAll('.collapsible');
-            
-            collapsibles.forEach(function(collapsible) {
-                const header = collapsible.querySelector('.collapsible-header');
-                
-                header.addEventListener('click', function() {
-                    collapsible.classList.toggle('active');
-                });
-            });
-        });
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getFullYear() + '/' + 
+                             String(now.getMonth() + 1).padStart(2, '0') + '/' + 
+                             String(now.getDate()).padStart(2, '0') + ' ' +
+                             String(now.getHours()).padStart(2, '0') + ':' + 
+                             String(now.getMinutes()).padStart(2, '0') + ':' + 
+                             String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('currentTime').textContent = timeString;
+        }
 
-        // 圖片模態框功能
-        function openImageModal(imageName) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            
-            modalImg.src = imageName;
-            modalImg.alt = '參考圖片: ' + imageName;
-            modal.style.display = 'block';
-            
-            // 點擊模態框背景關閉
-            modal.onclick = function(event) {
-                if (event.target === modal) {
-                    closeImageModal();
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('flightTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+                
+                for (let j = 0; j < 2; j++) { // 只搜尋航班號和機號
+                    if (cells[j] && cells[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
                 }
+                
+                rows[i].style.display = found ? '' : 'none';
             }
         }
 
-        function closeImageModal() {
-            document.getElementById('imageModal').style.display = 'none';
+        function refreshData() {
+            // 模擬數據刷新
+            const button = event.target;
+            button.innerHTML = '🔄 更新中...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                updateTime();
+                button.innerHTML = '🔄 重新整理';
+                button.disabled = false;
+                
+                // 可以在這裡添加實際的數據更新邏輯
+                console.log('數據已更新');
+            }, 1500);
         }
 
-        // ESC 鍵關閉模態框
+        // TOW 圖片顯示功能
+        function showTOWImage(flightNumber) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalText = document.getElementById('modalText');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            // 設定標題
+            modalTitle.textContent = `航班 ${flightNumber} - TOW 圖片`;
+            
+            // 隱藏文字，顯示圖片
+            modalText.style.display = 'none';
+            modalImage.style.display = 'block';
+            
+            // 設定圖片路徑（假設圖片命名格式為 TOW_航班號.jpg）
+            modalImage.src = `TOW_${flightNumber}.png`;
+            
+            // 如果圖片載入失敗，顯示預設圖片或錯誤訊息
+            modalImage.onerror = function() {
+                this.src = 'tow.png'; // 預設圖片
+            };
+            
+            // 顯示彈出視窗
+            modal.style.display = 'block';
+        }
+
+        // Journey Log 資料（內嵌在程式中）
+        const journeyLogData = {
+            'default': `B-18666    OPERATION    LOG
+----------------------------------------
+    CI0601 RCTP/VHHH SCHED DATE:1804
+    PIC/DUTY 638001/CA         (DANA)
+    ID2/DUTY 380815/FO
+    ID3/DUTY 380819/FUO
+    ID4/DUTY ******/[ ]
+    ID5/DUTY ******/[ ]
+    ID6/DUTY ******/[ ]
+    L/D PF/PN:2/1 DAY    MANUAL LAND
+    NIGHT TIME: **:**
+    LOG/IRS:**/**
+         TIME       FOB
+    OUT  2322     17.000
+    OFF  2332     16.800
+    ON   0058      8.880
+    IN   0111      8.440
+    INST 0126
+    BLK  0149
+    FUEL ADDED: 00904 GALLON
+    FUEL TOTAL:016940 LB
+    ACCEPT BY PIC: 638001
+----------------------------------------
+    F-OP051AA`
+        };
+
+        // Journey Log 文字檔顯示功能
+        function showJourneyLog(flightNumber, logNumber) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalText = document.getElementById('modalText');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            // 設定標題
+            modalTitle.textContent = `航班 ${flightNumber} - Journey Log (${logNumber})`;
+            
+            // 隱藏圖片，顯示文字
+            modalImage.style.display = 'none';
+            modalText.style.display = 'block';
+            
+            // 所有航班都使用相同的 Journey Log 資料
+            modalText.textContent = journeyLogData['default'];
+            
+            // 顯示彈出視窗
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // 點擊視窗外部關閉彈出視窗
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // ESC 鍵關閉彈出視窗
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closeImageModal();
+                closeModal();
             }
+        });
+
+        // 初始化
+        updateTime();
+        setInterval(updateTime, 30000);
+
+        // 表格行點擊效果
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', function(e) {
+                // 排除按鈕點擊
+                if (e.target.tagName !== 'BUTTON' && !e.target.classList.contains('tow-btn')) {
+                    this.style.background = 'rgba(42, 82, 152, 0.1)';
+                    setTimeout(() => {
+                        this.style.background = '';
+                    }, 200);
+                }
+            });
         });
     </script>
 
