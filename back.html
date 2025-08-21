@@ -497,20 +497,20 @@
             <table id="flightTable">
                 <thead>
                     <tr>
-                        <th>航班號</th>
-                        <th>機號</th>
-                        <th>起飛地</th>
-                        <th>目的地</th>
-                        <th>mBriefing Accept</th>
-                        <th>PIC & ACARS Accept</th>
-                        <th>ACCEPT 時間</th>
-                        <th>mBriefing Submit</th>
-                        <th>ETD</th>
-                        <th>ATD</th>
-                        <th>Journey Log</th>
-                        <th>TOW</th>
-                        <th>Pre Flight OFP</th>
-                        <th>其他詳細資料</th>
+                    <th onclick="showColumnImage(1)">航班號</th>
+                    <th onclick="showColumnImage(2)">機號</th>
+                    <th onclick="showColumnImage(3)">起飛地</th>
+                    <th onclick="showColumnImage(4)">目的地</th>
+                    <th onclick="showColumnImage(5)">mBriefing Accept</th>
+                    <th onclick="showColumnImage(6)">PIC & ACARS Accept</th>
+                    <th onclick="showColumnImage(7)">ACCEPT 時間</th>
+                    <th onclick="showColumnImage(8)">mBriefing Submit</th>
+                    <th onclick="showColumnImage(9)">ETD</th>
+                    <th onclick="showColumnImage(10)">ATD</th>
+                    <th onclick="showColumnImage(11)">Journey Log</th>
+                    <th onclick="showColumnImage(12)">TOW</th>
+                    <th onclick="showColumnImage(13)">Pre Flight OFP</th>
+                    <th onclick="showColumnImage(14)">其他詳細資料</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -812,7 +812,7 @@
             modalText.style.display = 'none';
             modalImage.style.display = 'block';
             
-            // 設定圖片路徑（假設圖片命名格式為 TOW_航班號.jpg）
+            // 設定圖片路徑（假設圖片命名格式為 TOW_航班號.png）
             modalImage.src = `TOW_${flightNumber}.png`;
             
             // 如果圖片載入失敗，顯示預設圖片或錯誤訊息
@@ -823,6 +823,84 @@
             // 顯示彈出視窗
             modal.style.display = 'block';
         }
+
+
+
+// 表頭點擊顯示對應圖片的函數
+function showColumnImage(imageNumber) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalText = document.getElementById('modalText');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    // 欄位標題對應表
+    const columnTitles = {
+        1: '航班號',
+        2: '機號',
+        3: '起飛地',
+        4: '目的地',
+        5: 'mBriefing Accept',
+        6: 'PIC & ACARS Accept',
+        7: 'ACCEPT 時間',
+        8: 'mBriefing Submit',
+        9: 'ETD',
+        10: 'ATD',
+        11: 'Journey Log',
+        12: 'TOW',
+        13: 'Pre Flight OFP',
+        14: '其他詳細資料'
+    };
+    
+    // 設定標題
+    modalTitle.textContent = `${columnTitles[imageNumber]} - 說明圖片`;
+    
+    // 隱藏文字，顯示圖片
+    modalText.style.display = 'none';
+    modalImage.style.display = 'block';
+    
+    // 設定圖片路徑
+    modalImage.src = `${imageNumber}.png`;
+    
+    // 如果圖片載入失敗，顯示錯誤訊息
+    modalImage.onerror = function() {
+        modalText.style.display = 'block';
+        modalImage.style.display = 'none';
+        modalText.textContent = `找不到圖片檔案：${imageNumber}.png\n請確認圖片檔案是否存在於相同資料夾中。`;
+    };
+    
+    // 顯示彈出視窗
+    modal.style.display = 'block';
+}
+
+// 關閉彈出視窗
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+}
+
+// 點擊視窗外部關閉彈出視窗
+window.onclick = function(event) {
+    const modal = document.getElementById('imageModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// ESC 鍵關閉彈出視窗
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+
+
+
+
+
+
+
+
 
         // Journey Log 資料（內嵌在程式中）
         const journeyLogData = {
