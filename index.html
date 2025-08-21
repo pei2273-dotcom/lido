@@ -281,7 +281,7 @@
             bottom: -20px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 360px) {
             .container {
                 margin: 10px;
                 border-radius: 15px;
@@ -553,9 +553,9 @@
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
+                                ✅ <strong>有航班資訊</strong> → 直接下載計畫<br>
                                 ❌ <strong>沒有航班資訊</strong> → 點選 Search，輸入航班號碼 (如：0100) 進行搜尋 <button class="image-btn" onclick="openImageModal('search.png')">圖</button><br>
                                 ❌ <strong>搜尋不到航班</strong> → 繼續通勤，進入駕駛艙後再下載計畫<br>
-                                ✅ <strong>有航班資訊</strong> → 直接下載計畫
                             </div>
                         </div>
 
@@ -613,16 +613,6 @@
                         <div class="detail-item">確認航班能下載開啟</div>
                         <div class="detail-item">由 Captain 點選 <span class="highlight">Accept Flight</span>（確認已接收電子飛行計畫）</div>
                         
-                        <div class="collapsible error-collapsible">
-                            <div class="collapsible-header">
-                                ❌ 無法開啟檔案處理
-                                <span class="toggle-icon">▶</span>
-                            </div>
-                            <div class="collapsible-content">
-                                如仍無法開啟檔案 → 啟用 <span class="highlight">"紙本計畫"</span> 流程
-                            </div>
-                        </div>
-
                         <div class="collapsible success-collapsible active">
                             <div class="collapsible-header">
                                 ✅ Accept Flight 功能說明
@@ -634,6 +624,18 @@
                                 <strong>追蹤功能：</strong>後台可以追蹤是誰誤 Accept Flight
                             </div>
                         </div>
+
+                        <div class="collapsible error-collapsible">
+                            <div class="collapsible-header">
+                                ❌ 無法開啟檔案處理
+                                <span class="toggle-icon">▶</span>
+                            </div>
+                            <div class="collapsible-content">
+                                如仍無法開啟檔案 → 啟用 <span class="highlight">"紙本計畫"</span> 流程
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
                 <div class="arrow"></div>
