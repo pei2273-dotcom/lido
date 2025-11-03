@@ -701,15 +701,15 @@
                             </div>
                         </div>
 
-                        <div class="detail-item">計畫內容 (NOTAM、ATC、General) 之修改需求，由航務處定義</div>
+                        <div class="detail-item">計畫內容General、Fuel、ETP等格子內容檢視將新增於FOM Appendix 1 (如同現行FOM 紙本FOM 之檢視內容)</div>
                         
                         <div class="collapsible decision-collapsible">
                             <div class="collapsible-header">
-                                ⚠️ 簽派部建議討論
+                                ⚠️ ETP 內容修正
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
-                                是否保留標籤頁面 <strong>ETP information</strong>，請參考<button class="image-btn" onclick="openImageModal('etp.png')">圖</button>
+                                由於目前LIDO系統設定限制 <strong>ETP information</strong>仍在請廠商修正，將修正與紙本計畫內容相同<button class="image-btn" onclick="openImageModal('etp.png')">圖</button>
                             </div>
                         </div>
                     </div>
@@ -798,9 +798,9 @@
                                 <strong>功能：</strong>上傳"個人"飛行資料<br>
                                 <strong>查看：</strong>上傳後可由 Flight list -> submitted 看到送出的航班與時間<br>
                                 <strong>修改：</strong>如有需要更改，仍可進去航班內，修改後再次 Submit<br>
-                                <strong>額外設定：</strong><br>
-                                (1)可設定於航班ETA+8hrs 後自動Submit 資料<br>
-                                (2)可設定航班ETA+7 days後自動刪除App內航班資料<br>
+                                <strong>額外設定(待航務處反映後可以討論調整)：</strong><br>
+                                (1)目前設定於航班ETA+8hrs 後自動Submit 資料<br>
+                                (2)目前設定航班ETA+7 days後自動刪除App內航班資料<br>
                                 <strong>飛行後平台設定：</strong>抓取 PIC 最新上傳的資料，並且設定只顯示 PIC 的Submit的文件
                             </div>
                         </div>
@@ -813,16 +813,16 @@
 
             <!-- Phase 8: 文件管理建議 -->
             <div class="phase phase-8">
-                <div class="time-badge">文件管理 </div>
+                <div class="time-badge">飛航後文件處理 </div>
                 <div class="phase-content">
                     <div class="phase-title">
                         <div class="phase-icon">📁</div>
-                        POST Flight Data 與文件處理
+                        POST Flight Data 文件處理
                     </div>
                     <div class="phase-details">
                         <div class="collapsible decision-collapsible">
                             <div class="collapsible-header">
-                                📖 Master Flight Plan 討論建議
+                                📖 Master Flight Plan 
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
@@ -834,13 +834,11 @@
 
                         <div class="collapsible decision-collapsible">
                             <div class="collapsible-header">
-                                ⚠️ TO DATA 處理建議
+                                ⚠️ Take off Data
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
-                                <strong>方案 1：</strong>截圖上傳，檔名：TOW（大小寫皆可） <button class="image-btn" onclick="openImageModal('tow.png')">圖</button><br>
-                                <strong>方案 2：</strong>填寫於 Notes 頁面<br>
-                                <strong>方案 3：</strong>填寫於 Additional Briefing Documents
+                                <strong>方案 1：</strong>截圖或拍照上傳，檔名：TOW（大小寫皆可） <button class="image-btn" onclick="openImageModal('tow.png')">圖</button><br>
                             </div>
                         </div>
 
@@ -850,27 +848,20 @@
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
-                                <strong>NOTOC：</strong>依據 FOM 6.2.4<button class="image-btn" onclick="openImageModal('tk7.png')">圖</button> 與 GOM 5.7.2 <button class="image-btn" onclick="openImageModal('tk4.png')">圖</button>，公司已在 Loading 與 CGO 留存文件副本，組員值勤結束後建議妥善丟棄 NOTOC<br><br>
+                                <strong>NOTOC：</strong>依據 FOM 6.2.4<button class="image-btn" onclick="openImageModal('tk7.png')">圖</button> 與 GOM 5.7.2 <button class="image-btn" onclick="openImageModal('tk4.png')">圖</button>，公司已在 Loading 與 CGO 留存文件副本，目前正在與POI討論組員簽名後，並於執勤結束後妥善丟棄NOTOC。<br> 另已簽名之NOTOC 將由地勤人員拍照或掃描上傳至 OPT 平台存檔已供備查。<br>
                                 <strong>LoadSheet：</strong>依據 FOM 4.9.5<button class="image-btn" onclick="openImageModal('tk5.png')">圖</button>，公司已透過 ACARS 電子簽章簽名<br>
-                                若為 manual 文件 → 可拍照上傳，檔名：LS（大小寫皆可）<br>
-                                如影像模糊 → 以 Loading 保存之副本為主
+                                若為 manual 文件 → 可拍照上傳，檔名：LS（大小寫皆可）。<br>
+                                如影像模糊 → 以 Loading 保存之副本為主。
                             </div>
                         </div>
 
                         <div class="collapsible decision-collapsible">
                             <div class="collapsible-header">
-                                ⚠️ Operation Log 方案討論
+                                ⚠️ Operation Log 處理
                                 <span class="toggle-icon">▶</span>
                             </div>
-                            <div class="collapsible-content">
-                                <strong>方案一：</strong><br>
-                                • 客製化 LIDO mBriefing -- Journey Log 用以符合公司 Operation Log 與 Rest Time 記錄規範 <button class="image-btn" onclick="openImageModal('log.png')">圖</button><br>
-                                • 組員需同時完成 ACARS Operation Log 與 LIDO mBriefing Data<br>
-                                • 組員 Submit 後，後台僅擷取 PIC 的資料<br>
-                                • 如資料不足 → 再由 ACARS 補齊並要求組員補簽名<br>
-                                • <strong>需獲取 AC120-78B 認證</strong><br><br>
-                                <strong>方案二：</strong><br>
-                                • 原 ACARS 資料照相上傳，檔名：LOG（大小寫皆可）
+                            <div class="collapsible-content"><br>
+                                • 原 ACARS 簽名後資料照相上傳，檔名：LOG（大小寫皆可）
                             </div>
                         </div>
                     </div>
