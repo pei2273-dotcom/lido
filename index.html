@@ -534,7 +534,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .document-table th {
@@ -569,7 +569,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>✈️ 電子飛行計劃 (LIDO mBriefing) 操作流程</h1>
+            <h1>✈️ LIDO mBriefing 電子飛行計劃操作流程</h1>
         </div>
 
         <div class="timeline">
@@ -607,7 +607,8 @@
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
-                                <strong>功能：</strong>可輸入加油原因與數值，資料會自動連動至 L/S、Fuel Sheet，並可透過 ACARS 發送訊息給 OD/MM/LD <button class="image-btn" onclick="openImageModal('fuel.png')">圖</button>
+                                <strong>功能：</strong> 點選下方 Briefing，再開啟左上角工具列選擇 Fuel。
+  在Block Fuel中輸入所需總油，在Extra Feul中選擇加油原因，亦可以變更時間及額外油量。資料會自動連動至 L/S、Fuel Sheet，並可透過 ACARS 發送訊息給 OD/MM/LD <button class="image-btn" onclick="openImageModal('fuel.png')">圖</button>
                             </div>
                         </div>
 
@@ -621,7 +622,9 @@
                             </div>
                         </div>
 
-                        <div class="detail-item">如檢視後不需修改 → 由 Captain 點選 <span class="highlight">Accept Flight</span> <button class="image-btn" onclick="openImageModal('accept.png')">圖</button></div>
+                        <div class="detail-item">如檢視後不需修改 → 由 Captain 點選 <span class="highlight">Accept Flight</span><br>
+                        <strong>補充說明 -> </strong>回到Dashboard頁面點選 Accept Flight 或是開啟右上角功能項(圖示)點選 Accept Flight <button class="image-btn" onclick="openImageModal('accept.png')">圖</button></div> 
+
                         <div class="detail-item">⚠️ <strong>僅 Captain 有權限執行 Accept Flight</strong></div>
                         
                         <div class="collapsible success-collapsible">
@@ -689,7 +692,7 @@
                         網路與同步確認
                     </div>
                     <div class="phase-details">
-                        <div class="detail-item">組員啟用 <span class="highlight">Real Time Sync</span> 或備援 <span class="highlight">Share</span> <button class="image-btn" onclick="openImageModal('sync.png')">圖</button></div>
+                        <div class="detail-item">開啟右上角功能項，組員啟用 <span class="highlight">Real Time Sync</span> 或備援 <span class="highlight">Share</span> <button class="image-btn" onclick="openImageModal('sync.png')">圖</button></div>
                         <div class="detail-item">完成飛行計畫檢查並確認無誤</div>
                         
                         <div class="collapsible info-collapsible active">
@@ -736,11 +739,11 @@
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
-                                <strong>AOR 第54條-1 七</strong> 與 <strong>第55條</strong> <button class="image-btn" onclick="openImageModal('tk2.png')">圖</button>
+                                指定PIC 是依據： <strong>AOR 第54條-1 七</strong> 與 <strong>第55條</strong> <button class="image-btn" onclick="openImageModal('tk2.png')">圖</button>
                             </div>
                         </div>
 
-                        <div class="detail-item">計畫內容General、Fuel、ETP等格子內容檢視將新增於FOM Appendix 1 (如同現行FOM 紙本FOM 之檢視內容)</div>
+                        <div class="detail-item">計畫內容General、Fuel、ETP等格子內容檢視將新增於FOM Appendix 1 (如同現行FOM 紙本 OFP 之檢視內容)</div>
                         
                         <div class="collapsible decision-collapsible">
                             <div class="collapsible-header">
@@ -825,8 +828,7 @@
                         Submit Flight 作業
                     </div>
                     <div class="phase-details">
-                        <div class="detail-item">PIC 檢查資料無誤，確認 POST FLIGHT DATA 已上傳至 Package</div>
-                        <div class="detail-item">點選 <span class="highlight">Submit Flight</span>（代表：送出"個人"飛行資料） <button class="image-btn" onclick="openImageModal('submit.png')">圖</button></div>
+                        <div class="detail-item">PIC 檢查資料無誤，點選 <span class="highlight">Submit Flight</span><button class="image-btn" onclick="openImageModal('submitbutton.png')">圖</button>（代表：送出"個人"飛行資料），並確認 POST FLIGHT DATA 已上傳至 Package<button class="image-btn" onclick="openImageModal('submit.png')">圖</button></div>
                         
                         <div class="collapsible success-collapsible active">
                             <div class="collapsible-header">
@@ -838,7 +840,7 @@
                                 <strong>查看：</strong>上傳後可由 Flight list -> submitted 看到送出的航班與時間<br>
                                 <strong>修改：</strong>如有需要更改，仍可進去航班內，修改後再次 Submit<br>
                                 <strong>額外設定(待航務處反映後可以討論調整)：</strong><br>
-                                (1)目前設定於航班ETA+8hrs 後自動Submit 資料<br>
+                                (1)目前設定於航班ETA+8hrs 後自動Submit 資料(仍需開啟APP並連上網路)<br>
                                 (2)目前設定航班ETA+7 days後自動刪除App內航班資料<br>
                                 <strong>飛行後平台設定：</strong>抓取 PIC 最新上傳的資料，並且設定只顯示 PIC 的Submit的文件
                             </div>
@@ -911,7 +913,7 @@
                         </div>
  <!-- Phase 10: 機上紙本文件清冊 -->
             <div class="phase phase-10">
-                <div class="time-badge"> 紙本與電子飛行計畫，文件差異比較表。</div>
+                <div class="time-badge"> 比對紙本與電子飛行計畫，主要文件差異。</div>
                 <div class="phase-content">
                     <div class="phase-title">
                         <div class="phase-icon">📋</div>
@@ -954,7 +956,7 @@
                                 </tr>
                                 <tr>
                                     <td>紙本</td>
-                                    <td>維持紙本，拍照電子保存，紙本自行銷毀</td>
+                                    <td>維持紙本，組員拍照電子保存，紙本自行銷毀</td>
                                     <td>實體簽名</td>
                                     <td>檔名：FS(大小寫不限)</td>
                                 </tr>
@@ -968,23 +970,23 @@
                                 <tr>
                                     <td><strong>T/O Data</strong></td>
                                     <td>紙本</td>
-                                    <td>翻拍Flysmart/OPT畫面保存於App，</td>
+                                    <td>組員翻拍Flysmart/OPT畫面保存於App，</td>
                                     <td>免簽署</td>
                                     <td>檔名：TAKEOFF(大小寫不限)</td>
                                 </tr>
                                 <tr>
                                     <td><strong>NOTOC</strong></td>
                                     <td>紙本</td>
-                                    <td>維持紙本，地勤拍照保存簽名頁，紙本自行銷毀</td>
+                                    <td>維持紙本</td>
                                     <td>實體簽名</td>
-                                    <td>正本留存地服處/貨運處，聯管保留簽名電子檔<br>（地勤拍照從OTP平台上傳後保存於飛航後文件平台）</td>
+                                    <td>與貨運處、地服處協商中</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Operation Log</strong></td>
                                     <td>紙本</td>
-                                    <td>維持紙本，拍照電子保存，紙本自行銷毀</td>
+                                    <td>維持紙本，組員拍照電子保存，紙本自行銷毀</td>
                                     <td>實體簽名</td>
-                                    <td>各機型版面不同，改成ACARS簽署費用太高</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><strong>En-route Chart</strong></td>
